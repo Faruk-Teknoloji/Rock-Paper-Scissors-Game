@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+:root {
+  --shake-duration: 0.5s; /* Buradan animasyon süresini ayarlayabilirsin */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #f6f7fb;
+}
+
+::selection {
+  color: #fff;
+  background-color: #7d2ae8;
+}
+
+/* LOGO VE İSİM */
+.header {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header .logo {
+  width: 40px;
+  height: 40px;
+}
+
+.header .username {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #000000;
+}
+
+/* CONTAINER */
+.container {
+  margin-top: 60px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 90%;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* SONUÇ GÖRSELLERİ */
+.result_images {
+  display: flex;
+  column-gap: 4rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.result_images img {
+  width: 80px;
+  max-width: 100%;
+}
+
+.user_result img {
+  transform: rotate(90deg);
+}
+
+.cpu_result img {
+  transform: rotate(-90deg) rotateY(180deg);
+}
+
+/* SONUÇ MESAJI */
+.result {
+  text-align: center;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  color: #7d2ae8;
+  margin-top: 1.5rem;
+}
+
+/* ANİMASYON - BUTONA BASINCA HIZLI AŞAĞI-YUKARI */
+.container.start .user_result,
+.container.start .cpu_result {
+  animation: shakeFast var(--shake-duration) ease-in-out forwards;
+}
+
+@keyframes shakeFast {
+  0% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-15px) rotate(-5deg); }
+  50% { transform: translateY(15px) rotate(5deg); }
+  75% { transform: translateY(-10px) rotate(-3deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+/* SEÇİM BUTONLARI */
+.option_images {
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.container.start .option_images {
+  pointer-events: none;
+}
+
+.option_image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0.5;
+  cursor: pointer;
+  transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+.option_image:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.option_image.active {
+  opacity: 1;
+}
+
+.option_image img {
+  width: 50px;
+  max-width: 100%;
+  pointer-events: none;
+}
+
+.option_image p {
+  color: #7d2ae8;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  margin-top: 0.5rem;
+  pointer-events: none;
+  text-align: center;
+}
+
+/* SKOR TABLOSU */
+.scoreboard {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: #333;
+}
+
+#reset-btn {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #7d2ae8;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#reset-btn:hover {
+  background: #5a12c6;
+}
+
+/* MOBİL ÖZELLİKLER */
+@media (max-width: 500px) {
+  .result_images {
+    column-gap: 2rem;
+  }
+
+  .result_images img {
+    width: 60px;
+  }
+
+  .option_images {
+    gap: 0.5rem;
+  }
+
+  .option_image img {
+    width: 40px;
+  }
+}
